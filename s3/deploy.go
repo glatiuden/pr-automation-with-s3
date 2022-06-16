@@ -34,7 +34,7 @@ func Deploy(repo utils.ProjectInfo, sess *session.Session) error {
 		secret_manager.SetEnv(sess)
 
 		//Running build
-		build()
+		build(repo)
 
 	}
 
@@ -93,7 +93,7 @@ func Deploy(repo utils.ProjectInfo, sess *session.Session) error {
 	return nil
 }
 
-func build() {
+func build(repo utils.ProjectInfo) {
 
 	buildCmd := os.Getenv("BUILD_COMMAND")
 
@@ -106,9 +106,10 @@ func build() {
 		utils.RunCommand(buildCmd)
 
 	} else {
-
+		fmt.Printf("Entering directory %s....", repo.Directory)
+		cdCmd := fmt.Sprintf("cd %s", repo.Directory)
+		utils.RunCommand(cdCmd)
 		fmt.Println("yarn install ....")
-		utils.RunCommand("cd %s", repo.Directory)
 		utils.RunCommand("yarn")
 
 		if buildCmd == "" {
