@@ -19,7 +19,12 @@ import (
 // Deploy to S3 bucket
 func Deploy(repo utils.ProjectInfo, sess *session.Session) error {
 
-	dir := "./" + repo.DistFolder
+	folderDir = "./"
+	if repo.Directory != "" {
+		folderdir = repo.Directory
+	}
+	
+	dir := folderdir + repo.DistFolder
 
 	svc := s3.New(sess)
 
