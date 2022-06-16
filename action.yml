@@ -2,7 +2,7 @@ name: "Static Site Automation"
 description: "It simple Build the aws S3 bucket, build the applicaton and deploy static site to s3 and comment the url to the PR"
 author: glatiuden
 runs:
-  image: docker://glatiuden/pr-automation:v1.0.3
+  image: docker://glatiuden5/pr-automation:v1.0.3
   using: docker
 branding:
   icon: upload-cloud
