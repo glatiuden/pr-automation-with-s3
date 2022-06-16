@@ -108,6 +108,7 @@ func build() {
 	} else {
 
 		fmt.Println("yarn install ....")
+		utils.RunCommand("cd %s", repo.Directory)
 		utils.RunCommand("yarn")
 
 		if buildCmd == "" {
