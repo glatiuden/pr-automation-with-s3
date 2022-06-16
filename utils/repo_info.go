@@ -17,6 +17,7 @@ type ProjectInfo struct {
 	Bucket       string
 	IsBuild      bool
 	CloudfrontId string // cloud front distribution id
+	Directory    string
 }
 
 func getDistFolder() string {
@@ -78,6 +79,12 @@ func GetInfo(repo ProjectInfo, action string) ProjectInfo {
 	}
 
 	repo.CloudfrontId = os.Getenv("CLOUDFRONT_ID")
+	
+	folderDir := os.Getenv("DIRECTORY")
+	repo.Directory = "./"
+	if folderDir != "" {
+		repo.Directory = folderDir
+	}
 
 	return repo
 }
